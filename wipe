@@ -1,12 +1,6 @@
-#!/usr/bin/env bash #wipe
+#!/usr/bin/env bash
 
-touch /Users/user/folder/random
-size=$(df / | tail -1 | tr -d '%' | awk '{print $5}')
-random_string=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
 while true; do
-    while ((size < 95)); do
-        random_string=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
-        echo $random_string >> /Users/user/folder/random
-        done
-rm -rf /Users/user/folder/random
+  random=$(LC_ALL=C tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c 13)
+  echo "$random" >> /Users/user/folder/random
 done
